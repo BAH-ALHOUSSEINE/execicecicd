@@ -1,6 +1,6 @@
 name: Simple CI Pipeline
 
-# Ce pipeline se lance à chaque push ou pull request
+# Le pipeline se lance à chaque push ou pull request
 on:
   push:
     branches: ["main"]
@@ -9,10 +9,27 @@ on:
 jobs:
   hello-ci:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
 
       - name: Message de test
         run: echo "✅ Hello CI ! Le pipeline fonctionne 🎉"
+
+  test-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'   # ou 20 selon ton projet
+
+      - name: Installer les dépendances
+        run: npm install
+
+      - name: Lancer les tests unitaires
+        run: npm test

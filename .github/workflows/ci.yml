@@ -1,0 +1,18 @@
+name: Simple CI Pipeline
+
+# Ce pipeline se lance à chaque push ou pull request
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  hello-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Message de test
+        run: echo "✅ Hello CI ! Le pipeline fonctionne 🎉"
